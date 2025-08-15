@@ -1,0 +1,28 @@
+.tab-titles {
+  margin-bottom: 10px;
+}
+
+.nav-tabs {
+  display: flex;
+  list-style-type: none;
+  padding-left: 0;
+  margin-bottom: 0;
+}
+
+.nav-item {
+  margin-right: 10px;
+}
+
+.nav-link {
+  cursor: pointer;
+  padding: 10px;
+}
+
+.nav-link.active {
+  font-weight: bold;
+}
+
+.tab-content {
+  padding: 20px;
+  border: 1px solid #ddd;
+}

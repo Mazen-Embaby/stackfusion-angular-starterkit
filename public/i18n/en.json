@@ -1,0 +1,11 @@
+{
+  "Admin": "Admin",
+  "Team": "Team",
+  "Projects": "Projects",
+  "Calendar": "Calendar",
+  "Reports": "Reports",
+  "Kanban": "Kanban",
+  "Event": "Event",
+  "Ecommerce": "Ecommerce",
+  "Ticket": "Ticket"
+}

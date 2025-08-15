@@ -1,0 +1,10 @@
+@import 'tailwindcss';
+
+/* strategy: 'class', // base, class */
+@plugin "@tailwindcss/forms";
+@plugin "@tailwindcss/aspect-ratio";
+@plugin "@tailwindcss/typography";
+@plugin "tailwindcss-motion";
+
+/* dark mode toggle fature */
+@custom-variant dark (&:where(.dark, .dark *));

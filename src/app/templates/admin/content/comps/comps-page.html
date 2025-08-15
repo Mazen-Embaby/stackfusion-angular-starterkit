@@ -1,0 +1,23 @@
+<div class="container mx-auto max-w-screen-2xl p-4 sm:p-8 dark:text-white">
+  <div class="mt-12">
+    <h1 class="text-secondary-900 text-3xl font-bold capitalize">All {{ info.appName }} Tailwind CSS components</h1>
+    <p class="mt-4">
+      {{ info.appName }} offers a collection of prebuilt
+      <strong>500+ components</strong>
+      designed to accelerate your project development. Below is a summary of the available component categories:
+    </p>
+  </div>
+  <div class="mt-7 grid grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4">
+    @for (thumbnail of comps; track thumbnail.title) {
+    <a class="bg-base-100 border-base-content/20 block size-full overflow-hidden rounded-xl border hover:text-indigo-500 hover:shadow-md"
+      [href]="thumbnail.link" target="_blank">
+      <div class="bg-base-200/20 flex h-52 items-center justify-center">
+        <svg-icon [src]="thumbnail.svgPath" [svgStyle]="{ fill: 'rgb(150,50,255)' }">></svg-icon>
+      </div>
+      <div class="border-base-content/10 border-t p-4">
+        <h2 class="text-base-content/90 font-semibold">{{ thumbnail.title }}</h2>
+      </div>
+    </a>
+    }
+  </div>
+</div>

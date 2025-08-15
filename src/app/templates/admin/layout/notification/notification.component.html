@@ -1,0 +1,84 @@
+<button
+  id="dropdownNotificationButton"
+  #notificationBtn
+  class="mt-2 inline-flex items-center text-center text-sm font-medium text-gray-500 hover:text-gray-900 focus:outline-none dark:text-gray-400 dark:hover:text-white"
+  type="button">
+  <svg class="h-6 w-6" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+    <path
+      d="M10 2a6 6 0 00-6 6v3.586l-.707.707A1 1 0 004 14h12a1 1 0 00.707-1.707L16 11.586V8a6 6 0 00-6-6zM10 18a3 3 0 01-3-3h6a3 3 0 01-3 3z"></path>
+  </svg>
+  <div class="relative mr-5 flex" [ngClass]="{ 'mr-5': totalUnread <= 0 }">
+    @if (totalUnread > 0) {
+      <div
+        class="relative -top-2 right-2 inline-flex h-5 w-5 items-center justify-center rounded-full border-2 border-white bg-red-500 font-bold text-white dark:border-gray-900">
+        <p class="truncate text-xs font-normal">{{ totalUnread }}</p>
+      </div>
+    }
+  </div>
+</button>
+
+<!-- Dropdown menu -->
+<div
+  #notificationDropDown
+  class="z-20 hidden w-full max-w-sm divide-y divide-gray-100 rounded-lg bg-white shadow dark:divide-gray-700 dark:bg-gray-800"
+  aria-labelledby="dropdownNotificationButton">
+  <div
+    class="block rounded-t-lg bg-gray-50 px-4 py-2 text-center font-medium text-gray-700 dark:bg-gray-800 dark:text-white">
+    Notifications
+  </div>
+  <div class="divide-y divide-gray-100 dark:divide-gray-700">
+    @for (notification of notifications; track notification.id) {
+      <div class="flex justify-between hover:bg-gray-100 dark:hover:bg-gray-700">
+        <a [routerLink]="notification.link" class="flex px-4 py-3">
+          <div class="flex-shrink-0">
+            <img class="h-11 w-11 shrink-0 rounded-full" [src]="notification.img" alt="img" />
+          </div>
+          <div class="w-full pl-3">
+            <div [innerHTML]="notification.content"></div>
+            <div class="text-xs text-blue-600 dark:text-blue-500">
+              {{ notification.date | date }}
+            </div>
+          </div>
+        </a>
+        <div class="flex-col justify-items-center space-y-2 pt-2">
+          <button
+            (click)="delete(notification.id)"
+            title="Close"
+            class="flex items-end rounded-lg bg-transparent pr-2 font-bold text-gray-400 hover:text-gray-900 dark:hover:text-white">
+            <mat-icon class="text-base">close</mat-icon>
+          </button>
+          <button
+            type="button"
+            (click)="toggleRead(notification)"
+            [title]="notification.isRead ? 'UnRead' : 'Read'"
+            class="flex items-end rounded-lg bg-transparent pb-2 pr-2 text-sm text-gray-400">
+            <div
+              class="block h-2 w-2 rounded-full"
+              [ngClass]="{
+                'bg-gray-400': notification.isRead,
+                'bg-red-500': !notification.isRead,
+              }"></div>
+          </button>
+        </div>
+      </div>
+    }
+  </div>
+  <a
+    class="block rounded-b-lg bg-gray-50 py-2 text-center text-sm font-medium text-gray-900 hover:bg-gray-100 dark:bg-gray-800 dark:text-white dark:hover:bg-gray-700">
+    <div class="inline-flex items-center">
+      <svg
+        class="mr-2 h-4 w-4 text-gray-500 dark:text-gray-400"
+        aria-hidden="true"
+        fill="currentColor"
+        viewBox="0 0 20 20"
+        xmlns="http://www.w3.org/2000/svg">
+        <path d="M10 12a2 2 0 100-4 2 2 0 000 4z"></path>
+        <path
+          fill-rule="evenodd"
+          d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z"
+          clip-rule="evenodd"></path>
+      </svg>
+      View all
+    </div>
+  </a>
+</div>

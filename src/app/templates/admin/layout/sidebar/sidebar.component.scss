@@ -1,0 +1,48 @@
+/* Stylish scrollbar with light/dark mode support */
+:host ::ng-deep .overflow-y-auto {
+  /* Firefox */
+  scrollbar-width: auto;
+
+  /* Light mode */
+  scrollbar-color: #94a3b8 #f1f5f9;
+
+  /* Webkit browsers (Chrome, Safari, etc) */
+  &::-webkit-scrollbar {
+    width: 16px;
+    background-color: transparent;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: #f1f5f9;
+    border-radius: 8px;
+    margin: 2px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: #94a3b8;
+    border-radius: 8px;
+    border: 3px solid #f1f5f9;
+
+    &:hover {
+      background-color: #64748b;
+    }
+  }
+
+  /* Dark mode */
+  :host-context(.dark) & {
+    scrollbar-color: #475569 #1e293b;
+
+    &::-webkit-scrollbar-track {
+      background: #1e293b;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background-color: #475569;
+      border-color: #1e293b;
+
+      &:hover {
+        background-color: #64748b;
+      }
+    }
+  }
+}

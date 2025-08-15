@@ -1,0 +1,7 @@
+<button mat-icon-button class="flex leading-none" (click)="toggleDarkMode()" title="Dark Mode">
+  @if (darkMode$()) {
+    <mat-icon class="!text-gray-700 dark:!text-gray-300">dark_mode</mat-icon>
+  } @else {
+    <mat-icon class="!text-yellow-400">light_mode</mat-icon>
+  }
+</button>

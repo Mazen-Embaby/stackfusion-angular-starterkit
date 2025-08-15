@@ -1,0 +1,40 @@
+<div class="bg-slate-400 dark:bg-gray-900">
+  <div class="flex h-screen justify-center">
+    <div class="relative hidden h-full lg:block lg:w-1/3">
+      <img
+        src="https://images.unsplash.com/photo-1595521488367-9b130f86bbe3?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=688&q=80"
+        alt="Descriptive alt text"
+        class="h-full w-full object-cover" />
+      <div class="absolute inset-0 bg-gray-900 opacity-40"></div>
+    </div>
+
+    <div class="mx-auto my-auto flex w-full max-w-md flex-col items-center px-6 lg:w-2/6">
+      <div class="mb-20 flex-1">
+        <div class="items-center justify-center text-center">
+          <a [routerLink]="'./'" class="flex justify-center">
+            <img src="./assets/img/logo.png" class="mr-3 h-8" alt="Logo" />
+            <span class="self-center whitespace-nowrap text-xl font-semibold sm:text-2xl dark:text-white">
+              {{ info.appName }}
+            </span>
+          </a>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="content__container">
+          <p class="content__container__text">Have</p>
+          <ul class="content__container__list">
+            <li class="content__container__list__item">A nice !</li>
+            <li class="content__container__list__item">DAY !</li>
+            <li class="content__container__list__item">{{ username }}</li>
+            <li class="content__container__list__item">{{ username }}</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="flex">
+        <img src="https://cdn.pixabay.com/photo/2020/02/10/08/56/emoji-4835770_960_720.png" alt="smile face" />
+      </div>
+    </div>
+  </div>
+</div>

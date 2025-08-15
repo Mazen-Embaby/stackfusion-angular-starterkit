@@ -1,0 +1,15 @@
+{
+  "[html]": {
+    "editor.defaultFormatter": "vscode.html-language-features" // preserve default HTML formatter
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode" // format Angular typescript with Prettier + Tailwind plugin
+  },
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[componenthtml]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode" // if you want to format Angular component HTML templates via Prettier (check VS Code plugin)
+  },
+  "editor.formatOnSave": true
+}

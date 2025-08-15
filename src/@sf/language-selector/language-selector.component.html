@@ -1,0 +1,29 @@
+<button
+  type="button"
+  [matMenuTriggerFor]="listMenu"
+  class="inline-flex cursor-pointer items-center justify-center rounded-lg px-4 py-2 text-sm text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:hover:bg-gray-700 dark:hover:text-white">
+  @if (currentLanguage.flag) {
+    <img class="mr-2 h-5 w-5 rounded-full" [src]="currentLanguage.flag" alt="flag" />
+  }
+  <span>{{ currentLanguage.code }}</span>
+</button>
+
+<!-- Dropdown -->
+<mat-menu
+  #listMenu="matMenu"
+  class="z-50 list-none divide-y divide-gray-100 rounded-lg bg-white text-base shadow dark:bg-gray-700">
+  @for (lang of availableLanguages; track lang.code) {
+    <button
+      (click)="onLanguageChange(lang)"
+      mat-menu-item
+      class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-600 dark:hover:text-white"
+      role="menuitem">
+      <div class="inline-flex items-center space-x-1">
+        @if (lang.flag) {
+          <img class="mr-2 h-5 w-5 rounded-full" [src]="lang.flag" alt="flag" />
+        }
+        <span>{{ lang.name }}</span>
+      </div>
+    </button>
+  }
+</mat-menu>

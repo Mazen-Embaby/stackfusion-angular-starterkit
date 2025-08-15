@@ -1,0 +1,277 @@
+<div class="h-full">
+  <mat-drawer-container [hasBackdrop]="'true'" class="h-full">
+    <mat-drawer #drawer [mode]="'over'" [position]="'end'">
+      <router-outlet></router-outlet>
+    </mat-drawer>
+
+    <mat-drawer-content class="flex h-full flex-col">
+      <section class="h-full overflow-y-auto bg-gray-50 py-3 sm:py-5 dark:bg-gray-900">
+        <div class="mx-auto max-w-screen-2xl px-4 lg:px-12">
+          <div class="mb-42 relative overflow-hidden bg-white sm:rounded-lg dark:bg-gray-800">
+            <div
+              class="flex flex-col space-y-3 px-4 py-3 lg:flex-row lg:items-center lg:justify-between lg:space-x-4 lg:space-y-0">
+              <div class="flex items-center">
+                <div class="relative w-full">
+                  <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
+                    <svg
+                      aria-hidden="true"
+                      class="h-5 w-5 text-gray-500 dark:text-gray-400"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                      xmlns="http://www.w3.org/2000/svg">
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                    </svg>
+                  </div>
+                  <input
+                    type="text"
+                    placeholder="Search..."
+                    id="default-input"
+                    [formControl]="searchInputControl"
+                    class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 pl-10 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500" />
+
+                  <button
+                    type="submit"
+                    class="absolute right-0 top-0 rounded-r-lg border border-blue-700 bg-blue-700 p-2.5 text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                    <svg
+                      aria-hidden="true"
+                      class="h-5 w-5"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                      xmlns="http://www.w3.org/2000/svg">
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                    </svg>
+                  </button>
+                </div>
+              </div>
+
+              <div
+                class="flex flex-shrink-0 flex-col space-y-3 md:flex-row md:items-center md:space-x-3 md:space-y-0 lg:justify-end">
+                <button
+                  type="button"
+                  (click)="addCustomer()"
+                  routerLink="./add"
+                  class="inline-flex items-center justify-center rounded-lg bg-blue-700 px-4 py-2 text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                  <mat-icon class="mr-1">add</mat-icon>
+                  New customer
+                </button>
+
+                <button
+                  type="button"
+                  (click)="export()"
+                  class="inline-flex items-center justify-center rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm font-medium text-gray-900 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white dark:focus:ring-gray-700">
+                  <mat-icon>download</mat-icon>
+                  <span>Download</span>
+                </button>
+              </div>
+            </div>
+            <div class="overflow-x-auto">
+              <table class="w-full text-left text-sm text-gray-500 dark:text-gray-400">
+                <thead class="bg-gray-50 text-xs uppercase text-gray-700 dark:bg-gray-700 dark:text-gray-400">
+                  <tr>
+                    <th scope="col" class="p-4">
+                      <div class="flex items-center">
+                        <input
+                          id="checkbox-all"
+                          type="checkbox"
+                          class="h-4 w-4 rounded border-gray-300 bg-gray-100 text-blue-600 focus:ring-2 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-blue-600" />
+                        <label for="checkbox-all" class="sr-only">checkbox</label>
+                      </div>
+                    </th>
+                    <th scope="col" class="px-4 py-3">Customer</th>
+                    <th scope="col" class="px-4 py-3">email</th>
+                    <th scope="col" class="px-4 py-3">phone</th>
+                    <th scope="col" class="px-4 py-3">county</th>
+                    <th scope="col" class="px-4 py-3">user Role</th>
+                    <th scope="col" class="px-4 py-3">status</th>
+                    <th scope="col" class="px-4 py-3">last Login</th>
+                    <th scope="col" class="px-4 py-3">Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  @for (customer of customers; track customer.id) {
+                  <tr class="border-b hover:bg-gray-100 dark:border-gray-600 dark:hover:bg-gray-700">
+                    <td class="w-4 px-4 py-3">
+                      <div class="flex items-center">
+                        <input
+                          id="checkbox-table-search-1"
+                          type="checkbox"
+                          onclick="event.stopPropagation()"
+                          class="h-4 w-4 rounded border-gray-300 bg-gray-100 text-blue-600 focus:ring-2 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-blue-600" />
+                        <label for="checkbox-table-search-1" class="sr-only">checkbox</label>
+                      </div>
+                    </td>
+                    <th
+                      scope="row"
+                      class="flex items-center whitespace-nowrap px-4 py-2 font-medium text-gray-900 dark:text-white">
+                      @if (customer.img) {
+                      <img [src]="customer.img" alt="cust" class="mr-3 h-12 w-auto rounded-full" />
+                      } @else {
+                      <div class="mr-3 h-12 w-12 text-indigo-400">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          strokeWidth="{1.5}"
+                          stroke="currentColor"
+                          className="w-6 h-6">
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            d="M17.982 18.725A7.488 7.488 0 0012 15.75a7.488 7.488 0 00-5.982 2.975m11.963 0a9 9 0 10-11.963 0m11.963 0A8.966 8.966 0 0112 21a8.966 8.966 0 01-5.982-2.275M15 9.75a3 3 0 11-6 0 3 3 0 016 0z" />
+                        </svg>
+                      </div>
+                      } {{ customer.name }}
+                    </th>
+                    <td class="whitespace-nowrap px-4 py-2 font-medium text-gray-900 dark:text-white">
+                      <div class="flex items-center">
+                        <mat-icon class="mr-2 text-gray-700">email</mat-icon>
+                        {{ customer.email }}
+                      </div>
+                    </td>
+                    <td class="whitespace-nowrap px-4 py-2 font-medium text-gray-900 dark:text-white">
+                      <div class="flex items-center">
+                        <mat-icon class="mr-2 text-gray-700">phone</mat-icon>
+                        {{ customer.phone }}
+                      </div>
+                    </td>
+                    <td class="whitespace-nowrap px-4 py-2 font-medium text-gray-900 dark:text-white">
+                      {{ customer.county }}
+                    </td>
+                    <td class="px-4 py-2">
+                      <div class="flex items-center space-x-2">
+                        <span
+                          class="material-symbols-outlined"
+                          [ngClass]="{
+                              'text-blue-800 dark:text-blue-300': customer.userRole === 'Administrator',
+                              'text-indigo-800 dark:text-indigo-300': customer.userRole === 'Moderator',
+                              'text-gray-800 dark:text-gray-300': customer.userRole === 'Viewer',
+                            }">
+                          @if (customer.userRole === 'Administrator') {
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            class="h-6 w-6"
+                            viewBox="0 0 20 20"
+                            fill="currentColor"
+                            aria-hidden="true">
+                            <path d="M9 2a1 1 0 000 2h2a1 1 0 100-2H9z"></path>
+                            <path
+                              fill-rule="evenodd"
+                              clip-rule="evenodd"
+                              d="M4 5a2 2 0 012-2 3 3 0 003 3h2a3 3 0 003-3 2 2 0 012 2v11a2 2 0 01-2 2H6a2 2 0 01-2-2V5zm3 4a1 1 0 000 2h.01a1 1 0 100-2H7zm3 0a1 1 0 000 2h3a1 1 0 100-2h-3zm-3 4a1 1 0 100 2h.01a1 1 0 100-2H7zm3 0a1 1 0 100 2h3a1 1 0 100-2h-3z"></path>
+                          </svg>
+                          } @if (customer.userRole === 'Moderator') {
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            class="h-6 w-6"
+                            viewBox="0 0 20 20"
+                            fill="currentColor"
+                            aria-hidden="true">
+                            <path
+                              fill-rule="evenodd"
+                              clip-rule="evenodd"
+                              d="M6.672 1.911a1 1 0 10-1.932.518l.259.966a1 1 0 001.932-.518l-.26-.966zM2.429 4.74a1 1 0 10-.517 1.932l.966.259a1 1 0 00.517-1.932l-.966-.26zm8.814-.569a1 1 0 00-1.415-1.414l-.707.707a1 1 0 101.415 1.415l.707-.708zm-7.071 7.072l.707-.707A1 1 0 003.465 9.12l-.708.707a1 1 0 001.415 1.415zm3.2-5.171a1 1 0 00-1.3 1.3l4 10a1 1 0 001.823.075l1.38-2.759 3.018 3.02a1 1 0 001.414-1.415l-3.019-3.02 2.76-1.379a1 1 0 00-.076-1.822l-10-4z"></path>
+                          </svg>
+                          } @if (customer.userRole === 'Viewer') {
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            class="h-6 w-6"
+                            viewBox="0 0 20 20"
+                            fill="currentColor"
+                            aria-hidden="true">
+                            <path d="M10 12a2 2 0 100-4 2 2 0 000 4z"></path>
+                            <path
+                              fill-rule="evenodd"
+                              clip-rule="evenodd"
+                              d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z"></path>
+                          </svg>
+                          }
+                        </span>
+                        <span
+                          class="rounded px-2 py-0.5 text-xs font-medium"
+                          [ngClass]="{
+                              'bg-blue-300 text-blue-800 dark:bg-blue-900 dark:text-blue-300':
+                                customer.userRole === 'Administrator',
+                              'bg-indigo-300 text-indigo-800 dark:bg-indigo-900 dark:text-indigo-300':
+                                customer.userRole === 'Moderator',
+                              'bg-gray-300 text-gray-800 dark:bg-gray-900 dark:text-gray-300':
+                                customer.userRole === 'Viewer',
+                            }">
+                          {{ customer.userRole }}
+                        </span>
+                      </div>
+                    </td>
+                    <td class="whitespace-nowrap px-4 py-2 font-medium text-gray-900 dark:text-white">
+                      <div class="flex items-center">
+                        <div
+                          class="mr-2 inline-block h-4 w-4 rounded-full"
+                          [ngClass]="{
+                              'bg-green-500': customer.status === 'Active',
+                              'bg-red-400': customer.status === 'Inactive',
+                              'bg-orange-600': customer.status === 'Blocked',
+                              'bg-orange-400': customer.status === 'Suspended',
+                              'bg-red-700': customer.status === 'Deleted',
+                            }"></div>
+                        {{ customer.status }}
+                      </div>
+                    </td>
+                    <td class="whitespace-nowrap px-4 py-2 font-medium text-gray-900 dark:text-white">
+                      {{ customer.lastLogin | date: 'short' }}
+                    </td>
+                    <td class="whitespace-nowrap px-4 py-2 font-medium text-gray-900 dark:text-white">
+                      <button mat-icon-button [matMenuTriggerFor]="listMenu">
+                        <mat-icon>more_horiz</mat-icon>
+                      </button>
+                      <mat-menu #listMenu="matMenu">
+                        <button
+                          mat-menu-item
+                          (click)="editCustomer(customer)"
+                          routerLink="./edit/{{ customer.id }}"
+                          class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-600 dark:hover:text-white">
+                          <div class="inline-flex items-center">
+                            <mat-icon>edit_square</mat-icon>
+                            Edit
+                          </div>
+                        </button>
+                        <hr />
+                        <button
+                          mat-menu-item
+                          (click)="deleteCustomer(customer)"
+                          class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-600 dark:hover:text-white">
+                          <div class="inline-flex items-center">
+                            <mat-icon class="colo" style="color: red">delete</mat-icon>
+                            Delete
+                          </div>
+                        </button>
+                      </mat-menu>
+                    </td>
+                  </tr>
+                  }
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <mat-paginator
+            class="z-10 border-b bg-gray-50 sm:fixed sm:inset-x-0 sm:bottom-0 sm:border-b-0 sm:border-t dark:bg-transparent"
+            [ngClass]="{ 'pointer-events-none': isLoading }"
+            [length]="pagination.total"
+            [pageIndex]="pagination.page"
+            [pageSize]="pagination.pageSize"
+            [pageSizeOptions]="[10, 25, 100]"
+            [showFirstLastButtons]="true">
+          </mat-paginator>
+        </div>
+      </section>
+    </mat-drawer-content>
+  </mat-drawer-container>
+</div>

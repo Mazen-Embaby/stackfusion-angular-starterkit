@@ -1,0 +1,152 @@
+<aside
+  #sideBarDrawer
+  class="my-scrollable-div fixed left-0 top-0 z-40 h-screen w-64 -translate-x-full border-r border-gray-200 bg-white pt-20 transition-transform sm:translate-x-0 dark:border-gray-700 dark:bg-gray-800"
+  aria-label="Sidebar">
+  <div class="h-full overflow-y-auto bg-white px-3 pb-4 dark:bg-gray-800">
+    <ul class="space-y-2">
+      <!-- LEVEL 1 -->
+      @for (item of navigationMenu; track item.id) {
+        <li>
+          <button
+            type="button"
+            [routerLink]="item.link"
+            routerLinkActive="bg-gray-100 dark:bg-gray-700 dark:hover:bg-gray-700"
+            (click)="item.isOpen = !item.isOpen"
+            class="group flex w-full items-center rounded-lg p-1 text-base font-normal text-gray-900 transition duration-75 hover:bg-gray-200 dark:text-white dark:hover:bg-gray-600">
+            <mat-icon
+              class="text-gray-500 transition duration-75 dark:text-gray-400 dark:group-hover:text-white"
+              routerLinkActive="text-indigo-500"
+              aria-hidden="false"
+              aria-label="home"
+              [fontIcon]="item.icon">
+            </mat-icon>
+            <span class="ml-3 flex-1 whitespace-nowrap text-left" sidebar-toggle-item>{{ item.name }}</span>
+            @if (item.children.length > 0) {
+              <svg
+                sidebar-toggle-item
+                class="h-6 w-6"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+                xmlns="http://www.w3.org/2000/svg">
+                <path
+                  fill-rule="evenodd"
+                  d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                  clip-rule="evenodd"></path>
+              </svg>
+            }
+          </button>
+          <!-- LEVEL 2 -->
+          @if (item.children.length > 0) {
+            <ul [ngClass]="{ hidden: !item.isOpen }">
+              @for (child of item.children; track child.id) {
+                <li class="my-0.5">
+                  <a
+                    (click)="child.isOpen = !child.isOpen"
+                    class="group flex w-full items-center rounded-lg p-1 pl-11 text-base font-normal text-gray-900 transition duration-75 hover:bg-gray-200 dark:text-white dark:hover:bg-gray-600"
+                    [routerLink]="child.link"
+                    routerLinkActive="bg-gray-100 dark:bg-gray-700 dark:hover:bg-gray-700"
+                    [routerLinkActiveOptions]="{
+                      queryParams: 'ignored',
+                      matrixParams: 'exact',
+                      paths: 'subset',
+                      fragment: 'exact',
+                    }"
+                    [target]="child.target">
+                    <span
+                      class="material-icons mr-2 text-gray-500"
+                      routerLinkActive="text-indigo-500"
+                      [routerLinkActiveOptions]="{
+                        queryParams: 'ignored',
+                        matrixParams: 'exact',
+                        paths: 'subset',
+                        fragment: 'exact',
+                      }">
+                      {{ child.icon }}
+                    </span>
+                    <span class="ml-3 flex-1 whitespace-nowrap text-left" sidebar-toggle-item>{{ child.name }}</span>
+
+                    @if (child.target === '_blank') {
+                      <span class="m-1">
+                        <svg
+                          stroke="currentColor"
+                          fill="currentColor"
+                          stroke-width="0"
+                          viewBox="0 0 24 24"
+                          focusable="false"
+                          class="chakra-icon css-z7vpge"
+                          height="1em"
+                          width="1em"
+                          xmlns="http://www.w3.org/2000/svg">
+                          <path fill="none" d="M0 0h24v24H0z"></path>
+                          <path
+                            d="M19 19H5V5h7V3H5a2 2 0 00-2 2v14a2 2 0 002 2h14c1.1 0 2-.9 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"></path>
+                        </svg>
+                      </span>
+                    }
+                    @if (child.children.length > 0) {
+                      <svg
+                        sidebar-toggle-item
+                        class="h-6 w-6"
+                        fill="currentColor"
+                        viewBox="0 0 20 20"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path
+                          fill-rule="evenodd"
+                          d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                          clip-rule="evenodd"></path>
+                      </svg>
+                    }
+                  </a>
+
+                  <!-- LEVEL 3 -->
+                  @if (child.children.length > 0) {
+                    <ul class="my-0.5" [ngClass]="{ hidden: !child.isOpen }">
+                      @for (childL2 of child.children; track childL2.id) {
+                        <li>
+                          <a
+                            class="group ml-4 mt-1 flex h-8 w-52 items-center rounded-lg p-2 pl-11 text-base font-normal text-gray-900 transition duration-75 hover:bg-gray-200 dark:text-white dark:hover:bg-gray-600"
+                            [routerLink]="childL2.link"
+                            routerLinkActive="bg-gray-100 dark:bg-gray-700 dark:hover:bg-gray-700"
+                            [routerLinkActiveOptions]="{ exact: true }"
+                            [target]="childL2.target">
+                            <span
+                              class="material-icons mr-2 text-gray-500"
+                              routerLinkActive="text-indigo-500"
+                              [routerLinkActiveOptions]="{ exact: true }">
+                              {{ childL2.icon }}
+                            </span>
+                            {{ childL2.name }}
+                            @if (childL2.target === '_blank') {
+                              <span class="m-1">
+                                <svg
+                                  stroke="currentColor"
+                                  fill="currentColor"
+                                  stroke-width="0"
+                                  viewBox="0 0 24 24"
+                                  focusable="false"
+                                  class="chakra-icon css-z7vpge"
+                                  height="1em"
+                                  width="1em"
+                                  xmlns="http://www.w3.org/2000/svg">
+                                  <path fill="none" d="M0 0h24v24H0z"></path>
+                                  <path
+                                    d="M19 19H5V5h7V3H5a2 2 0 00-2 2v14a2 2 0 002 2h14c1.1 0 2-.9 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"></path>
+                                </svg>
+                              </span>
+                            }
+                          </a>
+                        </li>
+                      }
+                    </ul>
+                  }
+                </li>
+              }
+            </ul>
+          }
+        </li>
+      }
+
+      <hr />
+    </ul>
+  </div>
+</aside>

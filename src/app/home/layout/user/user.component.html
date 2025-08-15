@@ -1,0 +1,91 @@
+<div class="user-menu">
+  <!-- If user is NOT logged in -->
+  @if (!user) {
+    <a href="/auth/sign-in" mat-stroked-button color="primary"> Login </a>
+  } @else {
+    <button [ngpMenuTrigger]="dropdownMenu" matIconButton>
+      @if (user.avatar === undefined || user.avatar.trim() === '') {
+        <mat-icon>account_circle</mat-icon>
+      } @else {
+        <img class="h-6 w-6 rounded-full" [src]="user.avatar" alt="user photo" />
+      }
+    </button>
+
+    <ng-template #dropdownMenu>
+      <div sfDropDownBtn>
+        <div
+          sfDropDownContent
+          class="z-10 w-44 divide-y divide-gray-100 rounded-lg bg-white shadow dark:divide-gray-600 dark:bg-gray-700">
+          <div class="px-4 py-3 text-sm text-gray-900 dark:text-white">
+            <div class="font-medium">{{ user.username }}</div>
+            <div class="truncate">{{ user.email }}</div>
+          </div>
+          <ul
+            class="py-2 text-sm text-gray-700 dark:text-gray-200"
+            aria-labelledby="dropdownInformdropdownAvatarNameButtonationButton">
+            @for (item of userNavigation; track $index) {
+              <li sfDropDownItem class="justify-start" [routerLink]="item.link">
+                <mat-icon>{{ item.icon }}</mat-icon>
+                {{ item.name }}
+              </li>
+            }
+
+            <li sfDropDownItem class="justify-start" [routerLink]="'/auth/sign-out'">
+              <mat-icon>logout</mat-icon>
+              Sign out
+            </li>
+          </ul>
+        </div>
+      </div>
+    </ng-template>
+
+    <!-- Angular Material -->
+    <!-- <mat-menu
+      #userMenu="matMenu"
+      class="z-50 my-4 rounded bg-white text-base shadow dark:divide-gray-600 dark:bg-gray-700">
+      <div class="px-4 py-3">
+        <p class="text-xs text-gray-900 dark:text-black">{{ user.username }}</p>
+        <p class="truncate text-sm font-medium text-gray-900 dark:text-gray-950">
+          {{ user.email }}
+        </p>
+      </div>
+      <hr />
+      @for (item of userNavigation; track $index) {
+        <button
+          class="flex w-full items-center space-x-1 px-4 py-2 text-xs text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
+          [routerLink]="item.link">
+          <mat-icon>{{ item.icon }}</mat-icon>
+          <p>{{ item.name }}</p>
+        </button>
+      }
+    </mat-menu> -->
+  }
+  <!-- @else {
+    <button aria-label="Profile" mat-icon-button [matMenuTriggerFor]="userMenu">
+      @if (user.avatar === undefined || user.avatar.trim() === '') {
+        <mat-icon>account_circle</mat-icon>
+      } @else {
+        <img class="h-6 w-6 rounded-full" [src]="user.avatar" alt="user photo" />
+      }
+    </button>
+    <mat-menu
+      #userMenu="matMenu"
+      class="z-50 my-4 rounded bg-white text-base shadow dark:divide-gray-600 dark:bg-gray-700">
+      <div class="px-4 py-3">
+        <p class="text-xs text-gray-900 dark:text-black">{{ user.username }}</p>
+        <p class="truncate text-sm font-medium text-gray-900 dark:text-gray-950">
+          {{ user.email }}
+        </p>
+      </div>
+      <hr />
+      @for (item of userNavigation; track $index) {
+        <button
+          class="flex w-full items-center space-x-1 px-4 py-2 text-xs text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
+          [routerLink]="item.link">
+          <mat-icon>{{ item.icon }}</mat-icon>
+          <p>{{ item.name }}</p>
+        </button>
+      }
+    </mat-menu>
+  } -->
+</div>

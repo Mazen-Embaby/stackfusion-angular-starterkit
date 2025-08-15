@@ -1,0 +1,11 @@
+@if (templates) {
+  <div class="relative h-full dark:bg-gray-900">
+    <main class="py-8">
+      <div class="mx-auto grid max-w-screen-xl grid-cols-1 gap-6 px-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3">
+        @for (template of templates; track $index) {
+          <app-template-card [template]="template"></app-template-card>
+        }
+      </div>
+    </main>
+  </div>
+}

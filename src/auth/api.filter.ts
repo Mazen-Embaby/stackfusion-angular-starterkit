@@ -1,0 +1,7 @@
+import { AUTH_API } from './auth.api';
+
+export const EXCLUDE_API_BEARER = [
+  AUTH_API.SIGN_IN_END_POINT,
+  AUTH_API.REGISTER_END_POINT,
+  AUTH_API.GOOGLE_SIGN_IN_END_POINT,
+];

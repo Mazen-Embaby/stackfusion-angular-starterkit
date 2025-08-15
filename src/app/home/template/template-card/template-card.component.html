@@ -1,0 +1,22 @@
+<a [routerLink]="[template.detailLink]">
+  <div class="relative overflow-hidden rounded-xl bg-white shadow-sm shadow-indigo-300 hover:shadow-lg">
+    <img [src]="template.screenshotThumbnail" alt="Thumbnail" class="h-56 w-full object-contain" />
+    @if (template.badge) {
+      <div
+        class="absolute right-2 top-2 h-8 w-16 overflow-hidden rounded-md p-1 text-center opacity-80"
+        [ngClass]="template.badge.ngClass">
+        <p class="flex-nowrap text-wrap">
+          {{ template.badge.title }}
+        </p>
+      </div>
+    }
+    <div class="m-2 min-h-28 border-t-2 p-4">
+      <h3 class="line-clamp-2 text-lg font-medium text-black dark:text-black">
+        {{ template.title }}
+      </h3>
+      <p class="line-clamp-1 text-sm text-gray-500">
+        {{ template.description }}
+      </p>
+    </div>
+  </div>
+</a>
