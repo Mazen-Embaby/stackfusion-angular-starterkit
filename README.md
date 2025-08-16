@@ -1,8 +1,27 @@
-# 🚀 Stackfusion Free and Open Source SaaS Boilerplate with Tailwind CSS and Flowbite UI
+# 🚀 Stackfusion Free \& Open Source SaaS Boilerplate
+
+_A modern, full-featured SaaS starterkit built with Angular, Tailwind CSS, Angular Material, and TypeScript._
 
 ## What is Stackfusion?
 
-🚀🎉📚 A modern and feature-rich SaaS Boilerplate built with Angular + Tailwind CSS + Angular Material + TypeScript. Designed to kickstart your SaaS project with a robust frontend foundation and optional backend integrations.
+**Stackfusion** gives you a cutting-edge foundation to launch SaaS projects rapidly.
+
+- **Tech stack:** Angular + Tailwind CSS + Angular Material + TypeScript
+- **PRO option:** Seamless backend integrations (Supabase, Spring, Strapi)
+
+
+
+## ✨ [Dashboard Preview](https://stackfusion.dev/template/detail/angular-stackfusion-free-admin-dashboard)
+
+> <img src="https://raw.githubusercontent.com/Mazen-Embaby/stackfusion-angular-starterkit/refs/heads/main/public/assets/admin-dashboard/video/dashboard-preview.gif"  />
+
+
+
+## 🖼️ [Simple Landing Page](https://stackfusion.dev/template/detail/angular-stackfusion-simple-landing-page)
+
+<img src="https://raw.githubusercontent.com/Mazen-Embaby/stackfusion-angular-starterkit/refs/heads/main/public/assets/simple-landing-page/images/screenshot_thmbnail_860*860.jpg" style="zoom: 33%;" />
+
+
 
 > ⭐ **PRO Version Benefits:**
 >
@@ -10,88 +29,49 @@
 > - Advanced authentication and authorization features
 > - Complete production-ready infrastructure
 
-## Requirements
+- ## Requirements
 
-- Node.js 20+ and npm
-- Angular CLI
+  - Node.js 20+
+  - Angular CLI
 
-## Features ⚡
+  ***
 
-### Free Version Features
+  ## Features ⚡
 
-Core Frontend Features:
+  ### Free Version
 
-- ⚡ Angular Module Lazy Router
-- 🔥 Angular Material Components
-- 📱 Responsive Design: Mobile to Desktop
-- 🌙 Light/Dark Theme Support
-- 💅 Modern UI Design System
-- 🏕 Basic Pages (Landing, Dashboard)
-- 🎨 TailwindCSS Integration
-- � Basic Authentication
-- 🌐 Multi-Language Support (i18n)
-- ♻️ Type-Safe Environment Variables
-- ⌨️ Reactive Forms with Validation
-- 📏 ESLint & Prettier Configuration
-- 🦊 Git Hooks with Husky
-- 🚫 Lint Staged Files
-- 🚓 Commit Linting
-- 👷 GitHub Actions CI/CD
+  - Angular module lazy routing
+  - Angular Material components
+  - Fully responsive (mobile → desktop)
+  - Light/Dark theme
+  - Modern UI design
+  - Starter pages (landing, dashboard)
+  - TailwindCSS
+  - Basic JWT authentication
+  - i18n (multi-language)
+  - Type-safe config
+  - Reactive forms with validation
+  - ESLint/Prettier setup
+  - Husky git hooks
+  - Toastr notifications
 
-### Starter Templates 🎨
 
-Ready-to-Use Templates (Free):
+  ### Starter Templates
 
-- 🎯 Landing Pages
-- 🏢 Full Admin Dashboard
-- 🌪️ Windy Landing Page
-- 🎨 Sassy Dark Theme
-- 💼 Basic Business Template
+  - Landing pages
+  - Full admin dashboards
+  - Business template
 
-### PRO Version Features
 
-Backend Integrations (PRO Only):
+  ### PRO Features
 
-- � Complete Supabase Integration
-- 🔧 Java Spring Backend Integration
-- 💾 Strapi CMS Integration with Type-Safe ORM
-
-Advanced Features (PRO Only):
-
-- 👤 Passwordless Auth & Social Logins
-- � Multi-Tenancy & Team Management
-- 📝 Role-Based Access Control (RBAC)
-- 🏢 Advanced Admin Dashboard
-- 🔄 Enhanced Onboarding Flow
-- 📊 Advanced Analytics
-- 🔐 Enhanced Security Features
-- 🎛️ Full-Featured Admin Panel with:
-  - 📊 Advanced Dashboard Analytics
-  - 👥 User Management
-  - 🎚️ Role & Permission Management
-  - 🔧 System Settings
-  - 📈 Activity Monitoring
-  - 📋 Content Management
-
-### Developer Experience & Support
-
-Free Version Support:
-
-- 📚 Comprehensive Documentation
-- 💻 Clean and Maintainable Code
-- ⚡ Best Practices Implementation
-- 🔄 Regular Updates
-- 🐛 Bug Fixes
-- 💬 Community Support
-
-PRO Version Additional Support:
-
-- 🎯 Priority Bug Fixes
-- 📧 Email Support
-- 💬 Private Discord Channel
-- 🤝 Implementation Assistance
-- 🔧 Custom Feature Requests
-- 📱 Mobile App Support
+  - Full Supabase integration
+  - Java Spring backend
+  - Strapi (with type-safe ORM)
+  - Passwordless \& social login
+  - Multi-tenancy \& team management
+  - Role-based access (RBAC)
+  - Advanced onboarding, analytics, security, \& admin dashboard
 
 ## Development server
 
@@ -102,20 +82,6 @@ ng serve
 ```
 
 Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
-
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
-```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
-```
 
 ## Building
 
