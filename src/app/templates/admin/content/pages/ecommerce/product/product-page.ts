@@ -1,14 +1,30 @@
-import { AfterViewInit, Component, OnInit, ViewChild, inject } from '@angular/core';
-import { FormsModule, ReactiveFormsModule, UntypedFormControl } from '@angular/forms';
+import {
+  AfterViewInit,
+  Component,
+  OnInit,
+  ViewChild,
+  inject,
+} from '@angular/core';
+import {
+  FormsModule,
+  ReactiveFormsModule,
+  UntypedFormControl,
+} from '@angular/forms';
 import { MatDrawer, MatSidenavModule } from '@angular/material/sidenav';
-import { debounceTime, distinctUntilChanged, switchMap, map, merge } from 'rxjs';
+import {
+  debounceTime,
+  distinctUntilChanged,
+  switchMap,
+  map,
+  merge,
+} from 'rxjs';
 import { ProductService } from '../product.service';
 import { Product } from '../models/product.interface';
-import { Utils } from '../../../../../../../@sf/utils/utils';
+import { Utils } from '@sf/utils/utils';
 import { Pagination } from '../models/Pagination.interface';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
-import { RatingComponent } from '../../../../../../../@sf/rating';
-import { ShortNumberPipe } from '../../../../../../../@sf/pipes';
+import { RatingComponent } from '@sf/rating';
+import { ShortNumberPipe } from '@sf/pipes';
 import { RouterLink, RouterOutlet } from '@angular/router';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatButtonModule } from '@angular/material/button';
@@ -58,7 +74,10 @@ export class ProductPage implements OnInit, AfterViewInit {
   };
 
   ngOnInit(): void {
-    this._productService.getProducts(this.pagination.page, this.pagination.pageSize);
+    this._productService.getProducts(
+      this.pagination.page,
+      this.pagination.pageSize,
+    );
 
     this._productService.products$.subscribe((res) => {
       this.products = res;
@@ -75,7 +94,11 @@ export class ProductPage implements OnInit, AfterViewInit {
         distinctUntilChanged(),
         switchMap((query: string) => {
           this.isLoading = true;
-          return this._productService.getProducts(this._paginator.pageIndex, this._paginator.pageSize, query);
+          return this._productService.getProducts(
+            this._paginator.pageIndex,
+            this._paginator.pageSize,
+            query,
+          );
         }),
         map(() => {
           this.isLoading = false;
@@ -89,7 +112,10 @@ export class ProductPage implements OnInit, AfterViewInit {
       .pipe(
         switchMap(() => {
           this.isLoading = true;
-          this._productService.getProducts(this._paginator.pageIndex, this._paginator.pageSize);
+          this._productService.getProducts(
+            this._paginator.pageIndex,
+            this._paginator.pageSize,
+          );
           return this.products;
         }),
         map(() => {

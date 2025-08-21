@@ -2,7 +2,10 @@ import { Component, OnDestroy, OnInit, inject } from '@angular/core';
 import { MatMenuModule } from '@angular/material/menu';
 import { TranslateService } from '@ngx-translate/core';
 import { Subject, takeUntil } from 'rxjs';
-import { Language, LanguageSelectorComponent } from '../../../../../@sf/language-selector/language-selector.component';
+import {
+  Language,
+  LanguageSelectorComponent,
+} from '@sf/language-selector/language-selector.component';
 
 @Component({
   selector: 'app-language',
@@ -23,9 +26,11 @@ export class LanguageComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     // this.lang = this._translate.currentLang;
-    this._translate.onLangChange.pipe(takeUntil(this._unsubscribeAll)).subscribe((event) => {
-      // this.lang = event.lang;
-    });
+    this._translate.onLangChange
+      .pipe(takeUntil(this._unsubscribeAll))
+      .subscribe((event) => {
+        // this.lang = event.lang;
+      });
   }
 
   ngOnDestroy(): void {

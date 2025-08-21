@@ -15,12 +15,19 @@ import { MatInputModule } from '@angular/material/input';
 import { APP_INFO } from '../../app/app-info';
 import { AUTH_API } from '../auth.api';
 import { environment } from '../../environments/environment';
-import { AlertComponent } from '../../@sf/alert';
+import { AlertComponent } from '@sf/alert';
 
 @Component({
   selector: 'app-sign-in',
   templateUrl: './sign-in-page.html',
-  imports: [NgClass, MatInputModule, RouterLink, FormsModule, ReactiveFormsModule, AlertComponent],
+  imports: [
+    NgClass,
+    MatInputModule,
+    RouterLink,
+    FormsModule,
+    ReactiveFormsModule,
+    AlertComponent,
+  ],
   styleUrls: ['./sign-in-page.scss'],
 })
 export class SignInPage implements OnInit {

@@ -1,4 +1,4 @@
-import { Component, computed, inject, OnInit } from '@angular/core';
+import { Component, computed, inject, OnInit, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 
@@ -13,7 +13,7 @@ import { APP_INFO } from './app-info';
   styleUrl: './app.scss',
 })
 export class App implements OnInit {
-  title = 'stackfusion';
+  protected readonly title = signal('stackfusion');
   readonly appInfo = APP_INFO;
 
   private translate = inject(TranslateService);
@@ -31,5 +31,7 @@ export class App implements OnInit {
     // this.translate.use(this.translate.getBrowserLang() || 'de');
   }
 
-  public readonly triangularAngularVersion = computed(() => triangularAngularPackageJson.version);
+  public readonly triangularAngularVersion = computed(
+    () => triangularAngularPackageJson.version,
+  );
 }

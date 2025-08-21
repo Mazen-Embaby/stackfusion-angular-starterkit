@@ -3,6 +3,14 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@sf/*": [
+        "./src/@sf/*/public-api.ts",
+        "./src/@sf/*/index.ts",
+        "./src/@sf/*"
+      ]
+    },
     "strict": true,
     "noImplicitOverride": true,
     "noPropertyAccessFromIndexSignature": true,

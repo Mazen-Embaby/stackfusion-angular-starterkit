@@ -1,8 +1,14 @@
 import { Component, OnInit, inject } from '@angular/core';
-import { FormsModule, ReactiveFormsModule, UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
+import {
+  FormsModule,
+  ReactiveFormsModule,
+  UntypedFormBuilder,
+  UntypedFormGroup,
+  Validators,
+} from '@angular/forms';
 import { MatDrawer, MatSidenavModule } from '@angular/material/sidenav';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Utils } from '../../../../../../../../@sf/utils/utils';
+import { Utils } from '@sf/utils/utils';
 import { ProductService } from '../../product.service';
 import { Product } from '../../models/product.interface';
 

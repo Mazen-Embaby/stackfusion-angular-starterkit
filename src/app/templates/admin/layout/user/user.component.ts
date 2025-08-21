@@ -1,7 +1,13 @@
-import { Component, ElementRef, OnInit, ViewChild, inject } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  OnInit,
+  ViewChild,
+  inject,
+} from '@angular/core';
 import { AuthService } from '../../../../../auth/auth.service';
 import { User } from '../../../../../auth/models/user.model';
-import { NavigationRoute } from '../../../../../@sf/utils/models/navigation.interface';
+import { NavigationRoute } from '@sf/utils/models/navigation.interface';
 
 import { RouterLink } from '@angular/router';
 import { MatIconModule } from '@angular/material/icon';

@@ -1,9 +1,25 @@
-import { AfterViewInit, Component, ViewChild, inject, OnInit } from '@angular/core';
-import { FormsModule, ReactiveFormsModule, UntypedFormControl } from '@angular/forms';
+import {
+  AfterViewInit,
+  Component,
+  ViewChild,
+  inject,
+  OnInit,
+} from '@angular/core';
+import {
+  FormsModule,
+  ReactiveFormsModule,
+  UntypedFormControl,
+} from '@angular/forms';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { MatDrawer, MatSidenavModule } from '@angular/material/sidenav';
-import { debounceTime, distinctUntilChanged, switchMap, map, merge } from 'rxjs';
-import { Utils } from '../../../../../../../@sf/utils/utils';
+import {
+  debounceTime,
+  distinctUntilChanged,
+  switchMap,
+  map,
+  merge,
+} from 'rxjs';
+import { Utils } from '@sf/utils/utils';
 import { CustomerService } from '../customer.service';
 import { Customer } from '../models/customer.interface';
 import { Pagination } from '../models/Pagination.interface';
@@ -51,7 +67,10 @@ export class CustomerPage implements AfterViewInit, OnInit {
   };
 
   ngOnInit(): void {
-    this._customerService.getCustomers(this.pagination.page, this.pagination.pageSize);
+    this._customerService.getCustomers(
+      this.pagination.page,
+      this.pagination.pageSize,
+    );
 
     this._customerService.customers$.subscribe((res) => {
       this.customers = res;
@@ -68,7 +87,11 @@ export class CustomerPage implements AfterViewInit, OnInit {
         distinctUntilChanged(),
         switchMap((query: string) => {
           this.isLoading = true;
-          return this._customerService.getCustomers(this._paginator.pageIndex, this._paginator.pageSize, query);
+          return this._customerService.getCustomers(
+            this._paginator.pageIndex,
+            this._paginator.pageSize,
+            query,
+          );
         }),
         map(() => {
           this.isLoading = false;
@@ -82,7 +105,10 @@ export class CustomerPage implements AfterViewInit, OnInit {
       .pipe(
         switchMap(() => {
           this.isLoading = true;
-          this._customerService.getCustomers(this._paginator.pageIndex, this._paginator.pageSize);
+          this._customerService.getCustomers(
+            this._paginator.pageIndex,
+            this._paginator.pageSize,
+          );
           return this.customers;
         }),
         map(() => {

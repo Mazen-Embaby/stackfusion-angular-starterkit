@@ -9,7 +9,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatMenuModule } from '@angular/material/menu';
 
 import { NgpMenuTrigger } from 'ng-primitives/menu';
-import { Dropdown, DropdownContent, DropdownItem } from '../../../../@sf/dropdown';
+import { Dropdown, DropdownContent, DropdownItem } from '@sf/dropdown';
 @Component({
   selector: 'app-user',
   imports: [

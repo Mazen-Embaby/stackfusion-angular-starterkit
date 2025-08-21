@@ -1,8 +1,14 @@
-import { AfterViewInit, Component, ElementRef, ViewChild, inject } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  ElementRef,
+  ViewChild,
+  inject,
+} from '@angular/core';
 import { Dropdown } from 'flowbite';
 import { SidebarService } from '../sidebar/sidebar.service';
 
-import { NavigationRoute } from '../../../../../@sf/utils/models/navigation.interface';
+import { NavigationRoute } from '@sf/utils/models/navigation.interface';
 
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { LanguageComponent } from '../language/language.component';
@@ -42,7 +48,10 @@ export class HeaderComponent implements AfterViewInit {
   ];
 
   ngAfterViewInit(): void {
-    const navBarDropdown = new Dropdown(this.navBarDropdown.nativeElement, this.navBarBtn.nativeElement);
+    const navBarDropdown = new Dropdown(
+      this.navBarDropdown.nativeElement,
+      this.navBarBtn.nativeElement,
+    );
   }
 
   toggleSideBar() {
