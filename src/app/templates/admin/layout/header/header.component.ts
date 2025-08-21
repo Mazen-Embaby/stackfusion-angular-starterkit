@@ -1,11 +1,4 @@
-import {
-  AfterViewInit,
-  Component,
-  ElementRef,
-  ViewChild,
-  inject,
-} from '@angular/core';
-import { Dropdown } from 'flowbite';
+import { Component, inject } from '@angular/core';
 import { SidebarService } from '../sidebar/sidebar.service';
 
 import { NavigationRoute } from '@sf/utils/models/navigation.interface';
@@ -17,6 +10,8 @@ import { UserComponent } from '../user/user.component';
 import { TranslatePipe, TranslateDirective } from '@ngx-translate/core';
 import { ToggleDarkModeComponent } from '../toggle-dark-mode/toggle-dark-mode.component';
 import { APP_INFO } from '../../../../app-info';
+import { Dropdown, DropdownContent } from '@sf/dropdown';
+import { NgpMenuTrigger } from 'ng-primitives/menu';
 
 @Component({
   selector: 'app-header',
@@ -28,15 +23,15 @@ import { APP_INFO } from '../../../../app-info';
     UserComponent,
     TranslatePipe,
     ToggleDarkModeComponent,
+    Dropdown,
+    DropdownContent,
+    NgpMenuTrigger,
   ],
   styleUrls: ['./header.component.scss'],
   templateUrl: './header.component.html',
 })
-export class HeaderComponent implements AfterViewInit {
+export class HeaderComponent {
   private sideBarService = inject(SidebarService);
-
-  @ViewChild('navBarBtn', { static: false }) navBarBtn!: ElementRef;
-  @ViewChild('navBarDropdown', { static: false }) navBarDropdown!: ElementRef;
 
   readonly info = APP_INFO;
 
@@ -46,13 +41,6 @@ export class HeaderComponent implements AfterViewInit {
     { name: 'Ecommerce', link: '/template/live/admin/app/ecommerce' },
     { name: 'Ticket', link: '/template/live/admin/app/ticket' },
   ];
-
-  ngAfterViewInit(): void {
-    const navBarDropdown = new Dropdown(
-      this.navBarDropdown.nativeElement,
-      this.navBarBtn.nativeElement,
-    );
-  }
 
   toggleSideBar() {
     this.sideBarService.drawer.toggle();

@@ -38,7 +38,7 @@
           <a [href]="info.docsUrl!"
             class="group relative block rounded py-2 pl-3 pr-4 text-gray-700 transition-all duration-200 ease-in-out hover:bg-gray-100 md:border-0 md:p-0 md:hover:bg-transparent md:hover:text-indigo-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent md:dark:hover:text-white">
             <span class="relative">
-              {{ 'Docs' | translate }}
+              {{ "Docs" | translate }}
               <span
                 class="absolute -bottom-1 left-0 h-0.5 w-0 bg-indigo-600 transition-all duration-200 ease-out group-hover:w-full dark:bg-indigo-400"></span>
             </span>
@@ -64,7 +64,7 @@
 
       <!-- menu humberger button -->
       <div class="inline-flex md:hidden">
-        <button #navBarBtn type=" button"
+        <button [ngpMenuTrigger]="dropdownMenu" type=" button"
           class="ml-3 items-center rounded-lg p-2 text-sm text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 md:hidden dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
           aria-controls="navbar-default" aria-expanded="false">
           <span class="sr-only">Open main menu</span>
@@ -78,25 +78,26 @@
         <app-user />
       </div>
       <!-- menu item mobile -->
-      @if (navigation.length > 0) {
-      <div class="hidden w-full md:hidden" #navBarDropdown>
-        <ul
-          class="mt-4 flex flex-col rounded-lg border border-gray-100 bg-gray-50 p-4 md:mt-0 md:flex-row md:space-x-8 md:border-0 md:bg-white md:text-sm md:font-medium dark:border-gray-700 dark:bg-gray-800 md:dark:bg-gray-900">
-          @for (item of navigation; track $index) {
-          <li>
-            <a [routerLink]="item.link" (click)="hideMenu()"
-              class="group relative block rounded py-2 pl-3 pr-4 text-gray-700 transition-all duration-200 ease-in-out hover:bg-indigo-500 md:border-0 md:p-0 dark:text-gray-400 dark:hover:bg-indigo-600">
-              <span class="relative inline-block transform transition-transform duration-200 group-hover:translate-x-1">
-                {{ item.name }}
+      <ng-template #dropdownMenu>
+        <div sfDropDownBtn class="!w-full md:hidden">
+          <ul sfDropDownContent
+            class="mt-4 flex flex-col rounded-lg border border-gray-100 bg-gray-50 p-4 md:mt-0 md:flex-row md:space-x-8 md:border-0 md:bg-white md:text-sm md:font-medium dark:border-gray-700 dark:bg-gray-800 md:dark:bg-gray-900">
+            @for (item of navigation; track $index) {
+            <li>
+              <a [routerLink]="item.link"
+                class="group relative block rounded py-2 pl-3 pr-4 text-gray-700 transition-all duration-200 ease-in-out hover:bg-indigo-500 md:border-0 md:p-0 dark:text-gray-400 dark:hover:bg-indigo-600 dark:hover:text-white">
                 <span
-                  class="absolute -bottom-1 left-0 h-0.5 w-0 bg-white transition-all duration-200 ease-out group-hover:w-full"></span>
-              </span>
-            </a>
-          </li>
-          }
-        </ul>
-      </div>
-      }
+                  class="relative inline-block transform transition-transform duration-200 group-hover:translate-x-1">
+                  {{ item.name }}
+                  <span
+                    class="absolute -bottom-1 left-0 h-0.5 w-0 bg-white transition-all duration-200 ease-out group-hover:w-full"></span>
+                </span>
+              </a>
+            </li>
+            }
+          </ul>
+        </div>
+      </ng-template>
     </div>
   </div>
 </nav>

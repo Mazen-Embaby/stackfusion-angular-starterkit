@@ -1,23 +1,28 @@
-import { AfterViewInit, Component, ElementRef, OnInit, ViewChild, inject } from '@angular/core';
-import { Dropdown } from 'flowbite';
+import { Component, OnInit, inject } from '@angular/core';
 import { NotificationService } from './notification.service';
 import { Notification } from './notification.model';
 import { DatePipe, NgClass } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { MatIconModule } from '@angular/material/icon';
+import { Dropdown, DropdownContent } from '@sf/dropdown';
+import { NgpMenuTrigger } from 'ng-primitives/menu';
 
 @Component({
   selector: 'app-notification',
-  imports: [NgClass, RouterLink, DatePipe, MatIconModule],
+  imports: [
+    NgClass,
+    RouterLink,
+    DatePipe,
+    MatIconModule,
+    Dropdown,
+    DropdownContent,
+    NgpMenuTrigger,
+  ],
   templateUrl: './notification.component.html',
   styleUrls: ['./notification.component.scss'],
 })
-export class NotificationComponent implements AfterViewInit, OnInit {
+export class NotificationComponent implements OnInit {
   private _notificationService = inject(NotificationService);
-
-  @ViewChild('notificationBtn', { static: false }) notificationBtn!: ElementRef;
-  @ViewChild('notificationDropDown', { static: false })
-  notificationDropDown!: ElementRef;
 
   notifications: Notification[] = [];
   totalUnread = 0;
@@ -27,10 +32,6 @@ export class NotificationComponent implements AfterViewInit, OnInit {
       this.notifications = res;
       this.totalUnread = res.filter((res) => !res.isRead).length;
     });
-  }
-
-  ngAfterViewInit(): void {
-    new Dropdown(this.notificationDropDown.nativeElement, this.notificationBtn.nativeElement);
   }
 
   toggleRead(notification: Notification) {
