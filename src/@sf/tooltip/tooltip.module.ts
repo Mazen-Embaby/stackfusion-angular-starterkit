@@ -1,11 +1,12 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { TooltipBtnDirective } from './tooltip-btn.directive';
-import { TooltipViewDirective } from './tooltip-view.directive';
-import { TooltipComponent } from './tooltip.component';
+import { Tooltip } from './tooltip/tooltip.directive';
 
+/**
+ * @deprecated Use standalone components instead. This module will be removed in a future version.
+ * Import the directive directly: `import { Tooltip } from '@sf/tooltip';`
+ */
 @NgModule({
-  imports: [TooltipComponent, CommonModule, TooltipBtnDirective, TooltipViewDirective],
-  exports: [TooltipComponent, TooltipBtnDirective, TooltipViewDirective],
+  imports: [Tooltip],
+  exports: [Tooltip],
 })
 export class TooltipModule {}
