@@ -2,7 +2,10 @@ import { colorToTheme } from '../../utils/color-to-theme';
 import { mergeDeep } from '../../utils/merge-theme';
 import { injectFlowbiteDropdownContentConfig } from '../config/dropdown-content-config';
 import { injectFlowbiteDropdownState } from '../dropdown/dropdown-state';
-import { flowbiteDropdownContentState, provideFlowbiteDropdownContentState } from './dropdown-content-state';
+import {
+  flowbiteDropdownContentState,
+  provideFlowbiteDropdownContentState,
+} from './dropdown-content-state';
 
 import { computed, Directive, input } from '@angular/core';
 import { twMerge } from 'tailwind-merge';
@@ -26,7 +29,10 @@ export class DropdownContent {
   readonly customTheme = input(this.config.customTheme);
 
   readonly theme = computed(() => {
-    const mergedTheme = mergeDeep(this.config.baseTheme, this.state.customTheme());
+    const mergedTheme = mergeDeep(
+      this.config.baseTheme,
+      this.state.customTheme(),
+    );
 
     return {
       host: {

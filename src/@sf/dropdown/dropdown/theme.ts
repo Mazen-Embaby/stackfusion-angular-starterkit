@@ -3,7 +3,10 @@ import { createTheme } from '../../utils/create-theme';
 
 // eslint-disable-next-line @typescript-eslint/consistent-indexed-object-style
 export interface FLowbiteDropdownColors
-  extends Pick<FlowbiteColors, 'default' | 'info' | 'failure' | 'success' | 'warning' | 'primary'> {
+  extends Pick<
+    FlowbiteColors,
+    'default' | 'info' | 'failure' | 'success' | 'warning' | 'primary'
+  > {
   [key: string]: ColorToTheme;
 }
 
@@ -19,7 +22,7 @@ export interface FlowbiteDropdownHostTheme {
 
 export const flowbiteDropdownTheme: FlowbiteDropdownTheme = createTheme({
   host: {
-    base: 'fixed z-10 w-max divide-y rounded-lg border shadow-sm',
+    base: 'fixed z-50 w-max divide-y rounded-lg border shadow-sm',
     transition: '',
     color: {
       default: {
